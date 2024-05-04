@@ -52,5 +52,19 @@ namespace AgriculturePresentation.Controllers
             _serviceService.Delete(values);
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        public IActionResult EditService(int id) 
+        {
+            var values= _serviceService.GetById(id);
+            return View(values);
+        }
+        [HttpPost]
+        public IActionResult EditService(Service service)
+        {
+            _serviceService.Update(service);
+            return RedirectToAction("Index");
+        }
+
+
     }
 }
