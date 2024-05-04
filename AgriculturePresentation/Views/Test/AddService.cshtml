@@ -1,0 +1,20 @@
+﻿@model EntityLayer.Concrete.Service
+@{
+    ViewData["Title"] = "AddService";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Yeni Hizmet Girişi</h1>
+<form method="post">
+   @Html.Label("Başlık")
+   <input type="text" asp-for="Title" class="form-control"/>
+   <br />
+    @Html.Label("Açıklama")
+    <input type="text" asp-for="Description" class="form-control" />
+    <br />
+    @Html.Label("Resim")
+    <input type="text" asp-for="Image" class="form-control" />
+    <br />
+    <button class="btn btn-outline-primary">Kaydet</button>
+</form>
+
