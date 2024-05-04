@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Abstract;
+﻿using AgriculturePresentation.Models;
+using BusinessLayer.Abstract;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,15 +22,26 @@ namespace AgriculturePresentation.Controllers
         [HttpGet]
         public IActionResult AddService() 
         {
-            return View();
+            return View( new ServiceAddViewModel());
 
         }
         [HttpPost]
-        public IActionResult AddService(Service service)
+        public IActionResult AddService(ServiceAddViewModel model)
         {
+            if (ModelState.IsValid)
+            {
+                _serviceService.Insert(new Service()
+                {
+                    Title = model.Title,
+                    Description = model.Description,
+                    Image=model.Image
+                    
+                });
+                return RedirectToAction("Index");
 
-            _serviceService.Insert(service);
-            return RedirectToAction("Index");
+            }
+            return View(model);
+           
 
         }
     }
